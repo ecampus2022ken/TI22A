@@ -20,7 +20,7 @@ async function fetchSpreadsheet() {
         const rows = table.querySelectorAll("tr");
 
         rows.forEach((row, rowIndex) => {
-            if (rowIndex < 3) return; // Sembunyikan 2 baris pertama
+            if (rowIndex < 2) return; // Sembunyikan 2 baris pertama
             let cells = row.querySelectorAll("td");
             let card = document.createElement("div");
             card.classList.add("card");
