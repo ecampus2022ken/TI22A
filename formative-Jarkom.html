@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dasbor Interaktif Desain Jaringan</title>
+    <title>Dasbor Proyek Jaringan Multi-Gedung</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -91,8 +91,8 @@
 
     <div class="container mx-auto p-4 md:p-8">
         <header class="text-center mb-8">
-            <h1 class="text-3xl md:text-4xl font-bold text-teal-800">Dasbor Interaktif Desain Jaringan</h1>
-            <p class="text-gray-600 mt-2">Visualisasi Konsep Jaringan Multi-Gedung dengan Routing Dinamis</p>
+            <h1 class="text-3xl md:text-4xl font-bold text-teal-800">Dasbor Proyek Jaringan Multi-Gedung</h1>
+            <p class="text-gray-600 mt-2">Penjelasan Sederhana Proyek Jaringan Antar Gedung</p>
         </header>
 
         <nav class="mb-8 border-b border-gray-200">
@@ -101,10 +101,13 @@
                     <button class="nav-tab inline-block p-4 border-b-2 rounded-t-lg active-tab" data-tab="overview">Gambaran Umum</button>
                 </li>
                 <li class="mr-2">
-                    <button class="nav-tab inline-block p-4 border-b-2 rounded-t-lg inactive-tab" data-tab="ip-scheme">Perencanaan Jaringan</button>
+                    <button class="nav-tab inline-block p-4 border-b-2 rounded-t-lg inactive-tab" data-tab="ip-scheme">Rencana Jaringan</button>
+                </li>
+                 <li class="mr-2">
+                    <button class="nav-tab inline-block p-4 border-b-2 rounded-t-lg inactive-tab" data-tab="budget">Anggaran Biaya</button>
                 </li>
                 <li class="mr-2">
-                    <button class="nav-tab inline-block p-4 border-b-2 rounded-t-lg inactive-tab" data-tab="configuration">Konfigurasi Lengkap</button>
+                    <button class="nav-tab inline-block p-4 border-b-2 rounded-t-lg inactive-tab" data-tab="configuration">Perintah Konfigurasi</button>
                 </li>
             </ul>
         </nav>
@@ -113,14 +116,14 @@
             <!-- Overview Section -->
             <section id="overview" class="tab-content fade-in">
                 <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 mb-8">
-                    <h2 class="text-2xl font-semibold text-teal-700 mb-4">Konsep dan Topologi</h2>
+                    <h2 class="text-2xl font-semibold text-teal-700 mb-4">Konsep Proyek</h2>
                     <p class="text-gray-600 leading-relaxed">
-                        Aplikasi ini memvisualisasikan desain jaringan untuk tiga gedung yang saling terhubung. Konsep utamanya adalah topologi **Hub-and-Spoke**, di mana **Gedung Pusat** bertindak sebagai hub. Setiap gedung memiliki area routing dinamisnya sendiri (OSPF, EIGRP, RIP) yang dihubungkan melalui **redistribusi** di router pusat, memungkinkan komunikasi penuh antar semua perangkat di jaringan.
+                        Intinya, kita membuat jaringan untuk tiga gedung. **Gedung Pusat** jadi otaknya, sementara Gedung A dan B terhubung ke sana. Setiap gedung punya "bahasa" routingnya sendiri (OSPF, EIGRP, RIP). Tugas utama Router di Gedung Pusat adalah menjadi "penerjemah" agar semua gedung bisa saling ngobrol tanpa masalah. Proses penerjemahan ini disebut **redistribusi**.
                     </p>
                 </div>
 
                 <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 mb-8">
-                     <h3 class="text-xl font-semibold text-center mb-6 text-teal-700">Peta Topologi Jaringan</h3>
+                     <h3 class="text-xl font-semibold text-center mb-6 text-teal-700">Peta Jaringan</h3>
                      <div class="relative w-full min-h-[450px] md:min-h-[300px] flex justify-center items-center">
                         <!-- Lines -->
                         <div class="topology-line h-0.5 w-1/3 left-[16.66%] top-1/2 -translate-y-1/2 hidden md:block"></div>
@@ -132,13 +135,13 @@
                             <!-- Gedung A -->
                             <div class="z-10 building-node text-center p-4 bg-white border-2 border-blue-400 rounded-lg shadow-lg w-48 transition-transform transform hover:scale-105 mb-12 md:mb-0">
                                 <h4 class="font-bold text-blue-800">GEDUNG A</h4>
-                                <p class="text-sm text-gray-500">Protokol:</p>
+                                <p class="text-sm text-gray-500">Bahasa:</p>
                                 <p class="font-semibold text-blue-600">EIGRP 100</p>
                             </div>
                             <!-- Gedung Pusat -->
                             <div class="z-10 building-node text-center p-6 bg-white border-2 border-teal-500 rounded-lg shadow-xl w-56 transition-transform transform hover:scale-105">
                                 <h4 class="font-bold text-teal-800 text-lg">GEDUNG PUSAT</h4>
-                                <p class="text-sm text-gray-500">(Hub / Backbone)</p>
+                                <p class="text-sm text-gray-500">(Pusat Kendali)</p>
                                 <p class="font-semibold text-teal-600 text-lg mt-1">OSPF Area 0</p>
                                 <span class="absolute -top-3 -right-3 flex h-6 w-6">
                                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
@@ -148,7 +151,7 @@
                             <!-- Gedung B -->
                             <div class="z-10 building-node text-center p-4 bg-white border-2 border-purple-400 rounded-lg shadow-lg w-48 transition-transform transform hover:scale-105 mt-12 md:mt-0">
                                 <h4 class="font-bold text-purple-800">GEDUNG B</h4>
-                                <p class="text-sm text-gray-500">Protokol:</p>
+                                <p class="text-sm text-gray-500">Bahasa:</p>
                                 <p class="font-semibold text-purple-600">RIPv2</p>
                             </div>
                         </div>
@@ -157,15 +160,15 @@
 
                 <div class="grid md:grid-cols-2 gap-8">
                     <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
-                        <h3 class="text-xl font-semibold text-center mb-4 text-teal-700">Distribusi VLAN per Gedung</h3>
-                        <p class="text-center text-sm text-gray-500 mb-4">Menunjukkan jumlah VLAN unik yang dikelola di setiap lokasi.</p>
+                        <h3 class="text-xl font-semibold text-center mb-4 text-teal-700">Pembagian Ruangan (VLAN)</h3>
+                        <p class="text-center text-sm text-gray-500 mb-4">Ini adalah jumlah "ruangan virtual" atau VLAN di setiap gedung.</p>
                         <div class="chart-container">
                             <canvas id="vlanChart"></canvas>
                         </div>
                     </div>
                     <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
-                        <h3 class="text-xl font-semibold text-center mb-4 text-teal-700">Pembagian Protokol Routing</h3>
-                         <p class="text-center text-sm text-gray-500 mb-4">Setiap area jaringan memiliki protokol routing dominannya sendiri.</p>
+                        <h3 class="text-xl font-semibold text-center mb-4 text-teal-700">Bahasa Routing yang Dipakai</h3>
+                         <p class="text-center text-sm text-gray-500 mb-4">Setiap area jaringan punya "bahasa" routingnya sendiri.</p>
                         <div class="chart-container">
                             <canvas id="protocolChart"></canvas>
                         </div>
@@ -176,15 +179,15 @@
             <!-- IP Scheme Section -->
             <section id="ip-scheme" class="tab-content hidden fade-in">
                  <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
-                    <h2 class="text-2xl font-semibold text-teal-700 mb-2">Perencanaan Jaringan Rinci</h2>
-                    <p class="text-gray-600 mb-6">Gunakan filter untuk melihat detail perencanaan. Tabel ini mencakup alokasi IP, perangkat yang digunakan, hingga rekomendasi jumlah pengguna per VLAN.</p>
+                    <h2 class="text-2xl font-semibold text-teal-700 mb-2">Rencana Alamat IP dan Pengguna</h2>
+                    <p class="text-gray-600 mb-6">Ini adalah daftar lengkap alamat IP, perangkat yang dipakai, dan pembagian pengguna untuk setiap "ruangan virtual" (VLAN).</p>
                     
                     <div class="flex flex-wrap gap-2 mb-6 justify-center">
                         <button class="ip-filter-btn bg-teal-600 text-white py-2 px-4 rounded-md shadow" data-filter="all">Tampilkan Semua</button>
                         <button class="ip-filter-btn bg-gray-200 text-gray-700 py-2 px-4 rounded-md" data-filter="Gedung Pusat">Gedung Pusat</button>
                         <button class="ip-filter-btn bg-gray-200 text-gray-700 py-2 px-4 rounded-md" data-filter="Gedung A">Gedung A</button>
                         <button class="ip-filter-btn bg-gray-200 text-gray-700 py-2 px-4 rounded-md" data-filter="Gedung B">Gedung B</button>
-                        <button class="ip-filter-btn bg-gray-200 text-gray-700 py-2 px-4 rounded-md" data-filter="Link Wireless">Link Wireless</button>
+                        <button class="ip-filter-btn bg-gray-200 text-gray-700 py-2 px-4 rounded-md" data-filter="Link Wireless">Link Antar Gedung</button>
                     </div>
 
                     <div class="overflow-x-auto">
@@ -194,9 +197,9 @@
                                     <th scope="col" class="px-6 py-3">Lokasi</th>
                                     <th scope="col" class="px-6 py-3">Perangkat</th>
                                     <th scope="col" class="px-6 py-3">VLAN / Link</th>
-                                    <th scope="col" class="px-6 py-3">Rekomendasi Pengguna</th>
-                                    <th scope="col" class="px-6 py-3">Network Address</th>
-                                    <th scope="col" class="px-6 py-3">Gateway (di Router)</th>
+                                    <th scope="col" class="px-6 py-3">Jumlah Pengguna</th>
+                                    <th scope="col" class="px-6 py-3">Alamat Jaringan</th>
+                                    <th scope="col" class="px-6 py-3">Gerbang (Gateway)</th>
                                 </tr>
                             </thead>
                             <tbody id="ip-table-body">
@@ -206,12 +209,43 @@
                     </div>
                  </div>
             </section>
+            
+            <!-- Budget Section -->
+            <section id="budget" class="tab-content hidden fade-in">
+                 <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                    <h2 class="text-2xl font-semibold text-teal-700 mb-2">Perkiraan Biaya Proyek</h2>
+                    <p class="text-gray-600 mb-6">Ini adalah rincian perkiraan biaya untuk semua alat yang kita butuhkan. Harga ini berdasarkan harga pasaran alat bekas untuk lab.</p>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left text-gray-600">
+                            <thead class="text-xs text-teal-800 uppercase bg-teal-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">Perangkat</th>
+                                    <th scope="col" class="px-6 py-3">Model</th>
+                                    <th scope="col" class="px-6 py-3 text-center">Jumlah</th>
+                                    <th scope="col" class="px-6 py-3 text-right">Harga Satuan (Kira-kira)</th>
+                                    <th scope="col" class="px-6 py-3 text-right">Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody id="budget-table-body">
+                                <!-- Data will be populated by JS -->
+                            </tbody>
+                             <tfoot class="font-semibold text-gray-900">
+                                <tr>
+                                    <td colspan="4" class="px-6 py-3 text-right text-lg">Total Perkiraan Biaya</td>
+                                    <td id="total-budget" class="px-6 py-3 text-right text-lg"></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                 </div>
+            </section>
 
             <!-- Configuration Section -->
             <section id="configuration" class="tab-content hidden fade-in">
                 <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
-                    <h2 class="text-2xl font-semibold text-teal-700 mb-2">Konfigurasi CLI Lengkap</h2>
-                    <p class="text-gray-600 mb-6">Berikut adalah skrip konfigurasi lengkap yang dapat disalin untuk setiap perangkat dalam topologi, termasuk fungsi DHCP Server.</p>
+                    <h2 class="text-2xl font-semibold text-teal-700 mb-2">Semua Perintah Konfigurasi</h2>
+                    <p class="text-gray-600 mb-6">Ini adalah semua contekan perintah yang perlu dimasukkan ke setiap alat. Tinggal salin dan tempel saja.</p>
 
                     <div id="config-content" class="space-y-8">
                         
@@ -220,7 +254,7 @@
                             <h3 class="text-xl font-semibold text-teal-700 mb-4">Gedung Pusat</h3>
                             <div class="space-y-6">
                                 <div>
-                                    <h4 class="font-semibold text-gray-800 border-b pb-2 mb-2">Router Gedung Pusat (R-Pusat)</h4>
+                                    <h4 class="font-semibold text-gray-800 border-b pb-2 mb-2">Router Pusat (R-Pusat)</h4>
                                     <div class="config-code">
                                         <button class="copy-btn" data-clipboard-target="config-r-pusat">Salin</button>
                                         <pre id="config-r-pusat">
@@ -230,8 +264,7 @@ configure terminal
 hostname R-Pusat
 no ip domain-lookup
 !
-! --- KONFIGURASI DHCP SERVER ---
-! Alamat IP yang tidak akan diberikan ke klien (misal: gateway, server)
+! --- Mengatur DHCP Server (bagi-bagi IP otomatis) ---
 ip dhcp excluded-address 192.168.10.1
 ip dhcp excluded-address 192.168.20.1
 ip dhcp excluded-address 192.168.30.1
@@ -253,41 +286,42 @@ ip dhcp pool VLAN40_POOL
  network 192.168.40.0 255.255.255.0
  default-router 192.168.40.1
 !
-! --- Konfigurasi Interface & VLAN ---
+! --- Mengatur IP Address untuk tiap VLAN ---
 interface GigabitEthernet0/0
  no shutdown
 !
 interface GigabitEthernet0/0.10
- description Link ke VLAN A (Umum)
+ description Untuk VLAN A (Umum)
  encapsulation dot1Q 10
  ip address 192.168.10.1 255.255.255.0
 !
 interface GigabitEthernet0/0.20
- description Link ke VLAN B (Admin)
+ description Untuk VLAN B (Admin)
  encapsulation dot1Q 20
  ip address 192.168.20.1 255.255.255.0
 !
 interface GigabitEthernet0/0.30
- description Link ke VLAN C (Server)
+ description Untuk VLAN C (Server)
  encapsulation dot1Q 30
  ip address 192.168.30.1 255.255.255.0
 !
 interface GigabitEthernet0/0.40
- description Link ke VLAN D (Manajemen)
+ description Untuk VLAN D (Manajemen)
  encapsulation dot1Q 40
  ip address 192.168.40.1 255.255.255.0
 !
+! --- Mengatur IP untuk koneksi antar gedung ---
 interface GigabitEthernet0/1
- description Link ke Router Gedung A
+ description Ke Router Gedung A
  ip address 10.10.10.1 255.255.255.252
  no shutdown
 !
 interface GigabitEthernet0/2
- description Link ke Router Gedung B
+ description Ke Router Gedung B
  ip address 10.10.10.5 255.255.255.252
  no shutdown
 !
-! --- Konfigurasi Routing & QoS ---
+! --- Mengatur Routing (agar semua bisa ngobrol) ---
 router ospf 1
  router-id 1.1.1.1
  redistribute eigrp 100 subnets
@@ -307,6 +341,7 @@ router rip
  redistribute ospf 1 metric 2
  no auto-summary
 !
+! --- Mengatur Jatah Bandwidth (QoS) ---
 access-list 101 permit tcp 192.168.30.0 0.0.0.255 any eq 80
 !
 class-map match-any BATASI_WEB
@@ -323,7 +358,7 @@ end</pre>
                                     </div>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-gray-800 border-b pb-2 mb-2">Switch Gedung Pusat (SW-Pusat)</h4>
+                                    <h4 class="font-semibold text-gray-800 border-b pb-2 mb-2">Switch 1 Gedung Pusat (SW-Pusat)</h4>
                                     <div class="config-code">
                                         <button class="copy-btn" data-clipboard-target="config-sw-pusat">Salin</button>
                                         <pre id="config-sw-pusat">
@@ -342,26 +377,58 @@ vlan 40
  name VLAN_D_Manajemen
 !
 interface GigabitEthernet0/1
- description Link ke R-Pusat
+ description Kabel ke Router Pusat
  switchport mode trunk
 !
-interface FastEthernet0/1
- description PC di VLAN A
+interface GigabitEthernet0/2
+ description Kabel ke Switch ke-2
+ switchport mode trunk
+!
+! --- Mengatur port untuk pengguna ---
+interface range FastEthernet0/1 - 10
+ description Untuk 10 pengguna VLAN A
  switchport mode access
  switchport access vlan 10
 !
-interface FastEthernet0/2
- description PC di VLAN B
+interface range FastEthernet0/11 - 18
+ description Untuk 8 pengguna VLAN B
  switchport mode access
  switchport access vlan 20
 !
-interface FastEthernet0/3
- description Server di VLAN C
+end</pre>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 border-b pb-2 mb-2">Switch 2 Gedung Pusat (SW-P-1)</h4>
+                                    <div class="config-code">
+                                        <button class="copy-btn" data-clipboard-target="config-sw-p1">Salin</button>
+                                        <pre id="config-sw-p1">
+enable
+configure terminal
+!
+hostname SW-P-1
+!
+vlan 10
+ name VLAN_A_Umum
+vlan 20
+ name VLAN_B_Admin
+vlan 30
+ name VLAN_C_Server
+vlan 40
+ name VLAN_D_Manajemen
+!
+interface GigabitEthernet0/1
+ description Kabel ke Switch ke-1
+ switchport mode trunk
+!
+! --- Mengatur port untuk pengguna ---
+interface range FastEthernet0/1 - 5
+ description Untuk 5 pengguna VLAN C
  switchport mode access
  switchport access vlan 30
 !
-interface FastEthernet0/4
- description PC di VLAN D
+interface range FastEthernet0/6 - 13
+ description Untuk 8 pengguna VLAN D
  switchport mode access
  switchport access vlan 40
 !
@@ -386,7 +453,7 @@ configure terminal
 hostname R-A
 no ip domain-lookup
 !
-! --- KONFIGURASI DHCP SERVER ---
+! --- Mengatur DHCP Server ---
 ip dhcp excluded-address 192.168.10.1
 ip dhcp excluded-address 192.168.50.1
 !
@@ -398,26 +465,26 @@ ip dhcp pool VLAN50_POOL
  network 192.168.50.0 255.255.255.0
  default-router 192.168.50.1
 !
-! --- Konfigurasi Interface & VLAN ---
+! --- Mengatur IP Address ---
 interface GigabitEthernet0/0
  no shutdown
 !
 interface GigabitEthernet0/0.10
- description Link ke VLAN A (Umum)
+ description Untuk VLAN A (Umum)
  encapsulation dot1Q 10
  ip address 192.168.10.1 255.255.255.0
 !
 interface GigabitEthernet0/0.50
- description Link ke VLAN E (Teknik)
+ description Untuk VLAN E (Teknik)
  encapsulation dot1Q 50
  ip address 192.168.50.1 255.255.255.0
 !
 interface GigabitEthernet0/1
- description Link ke R-Pusat
+ description Ke Router Pusat
  ip address 10.10.10.2 255.255.255.252
  no shutdown
 !
-! --- Konfigurasi Routing ---
+! --- Mengatur Routing ---
 router eigrp 100
  eigrp router-id 2.2.2.2
  network 192.168.10.0
@@ -444,16 +511,17 @@ vlan 50
  name VLAN_E_Teknik
 !
 interface GigabitEthernet0/1
- description Link ke R-A
+ description Kabel ke Router Gedung A
  switchport mode trunk
 !
-interface FastEthernet0/1
- description PC di VLAN A
+! --- Mengatur port untuk pengguna ---
+interface range FastEthernet0/1 - 10
+ description Untuk 10 pengguna VLAN A
  switchport mode access
  switchport access vlan 10
 !
-interface FastEthernet0/2
- description PC di VLAN E
+interface range FastEthernet0/11 - 18
+ description Untuk 8 pengguna VLAN E
  switchport mode access
  switchport access vlan 50
 !
@@ -478,7 +546,7 @@ configure terminal
 hostname R-B
 no ip domain-lookup
 !
-! --- KONFIGURASI DHCP SERVER ---
+! --- Mengatur DHCP Server ---
 ip dhcp excluded-address 192.168.10.1
 ip dhcp excluded-address 192.168.20.1
 !
@@ -490,26 +558,26 @@ ip dhcp pool VLAN20_B_POOL
  network 192.168.20.0 255.255.255.0
  default-router 192.168.20.1
 !
-! --- Konfigurasi Interface & VLAN ---
+! --- Mengatur IP Address ---
 interface GigabitEthernet0/0
  no shutdown
 !
 interface GigabitEthernet0/0.10
- description Link ke VLAN A (Umum)
+ description Untuk VLAN A (Umum)
  encapsulation dot1Q 10
  ip address 192.168.10.1 255.255.255.0
 !
 interface GigabitEthernet0/0.20
- description Link ke VLAN B (Admin)
+ description Untuk VLAN B (Admin)
  encapsulation dot1Q 20
  ip address 192.168.20.1 255.255.255.0
 !
 interface GigabitEthernet0/1
- description Link ke R-Pusat
+ description Ke Router Pusat
  ip address 10.10.10.6 255.255.255.252
  no shutdown
 !
-! --- Konfigurasi Routing ---
+! --- Mengatur Routing ---
 router rip
  version 2
  network 192.168.10.0
@@ -536,16 +604,17 @@ vlan 20
  name VLAN_B_Admin
 !
 interface GigabitEthernet0/1
- description Link ke R-B
+ description Kabel ke Router Gedung B
  switchport mode trunk
 !
-interface FastEthernet0/1
- description PC di VLAN A
+! --- Mengatur port untuk pengguna ---
+interface range FastEthernet0/1 - 10
+ description Untuk 10 pengguna VLAN A
  switchport mode access
  switchport access vlan 10
 !
-interface FastEthernet0/2
- description PC di VLAN B
+interface range FastEthernet0/11 - 18
+ description Untuk 8 pengguna VLAN B
  switchport mode access
  switchport access vlan 20
 !
@@ -554,7 +623,6 @@ end</pre>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </section>
@@ -660,20 +728,28 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     const ipData = [
-        { location: 'Gedung Pusat', device: 'Router 2911, Switch 2960', vlan: 'VLAN A (Umum)', users: '70-100', network: '192.168.10.0/24', gateway: '192.168.10.1' },
-        { location: 'Gedung Pusat', device: 'Router 2911, Switch 2960', vlan: 'VLAN B (Admin)', users: '40-60', network: '192.168.20.0/24', gateway: '192.168.20.1' },
-        { location: 'Gedung Pusat', device: 'Router 2911, Switch 2960', vlan: 'VLAN C (Server)', users: '5-15', network: '192.168.30.0/24', gateway: '192.168.30.1' },
-        { location: 'Gedung Pusat', device: 'Router 2911, Switch 2960', vlan: 'VLAN D (Manajemen)', users: '20-30', network: '192.168.40.0/24', gateway: '192.168.40.1' },
-        { location: 'Gedung A', device: 'Router 2911, Switch 2960', vlan: 'VLAN A (Umum)', users: '70-100', network: '192.168.10.0/24', gateway: '192.168.10.1' },
-        { location: 'Gedung A', device: 'Router 2911, Switch 2960', vlan: 'VLAN E (Teknik)', users: '50-80', network: '192.168.50.0/24', gateway: '192.168.50.1' },
-        { location: 'Gedung B', device: 'Router 2911, Switch 2960', vlan: 'VLAN A (Umum)', users: '70-100', network: '192.168.10.0/24', gateway: '192.168.10.1' },
-        { location: 'Gedung B', device: 'Router 2911, Switch 2960', vlan: 'VLAN B (Admin)', users: '40-60', network: '192.168.20.0/24', gateway: '192.168.20.1' },
-        { location: 'Link Wireless', device: 'Router 2911, AP-PT', vlan: 'Pusat <-> A', users: 'N/A', network: '10.10.10.0/30', gateway: 'P: 10.10.10.1, A: 10.10.10.2' },
-        { location: 'Link Wireless', device: 'Router 2911, AP-PT', vlan: 'Pusat <-> B', users: 'N/A', network: '10.10.10.4/30', gateway: 'P: 10.10.10.5, B: 10.10.10.6' },
+        { location: 'Gedung Pusat', device: 'R-Pusat & SW-Pusat', vlan: 'VLAN A (Umum)', users: '10', network: '192.168.10.0/24', gateway: '192.168.10.1' },
+        { location: 'Gedung Pusat', device: 'R-Pusat & SW-Pusat', vlan: 'VLAN B (Admin)', users: '8', network: '192.168.20.0/24', gateway: '192.168.20.1' },
+        { location: 'Gedung Pusat', device: 'R-Pusat & SW-P-1', vlan: 'VLAN C (Server)', users: '5', network: '192.168.30.0/24', gateway: '192.168.30.1' },
+        { location: 'Gedung Pusat', device: 'R-Pusat & SW-P-1', vlan: 'VLAN D (Manajemen)', users: '8', network: '192.168.40.0/24', gateway: '192.168.40.1' },
+        { location: 'Gedung A', device: 'R-A & SW-A', vlan: 'VLAN A (Umum)', users: '10', network: '192.168.10.0/24', gateway: '192.168.10.1' },
+        { location: 'Gedung A', device: 'R-A & SW-A', vlan: 'VLAN E (Teknik)', users: '8', network: '192.168.50.0/24', gateway: '192.168.50.1' },
+        { location: 'Gedung B', device: 'R-B & SW-B', vlan: 'VLAN A (Umum)', users: '10', network: '192.168.10.0/24', gateway: '192.168.10.1' },
+        { location: 'Gedung B', device: 'R-B & SW-B', vlan: 'VLAN B (Admin)', users: '8', network: '192.168.20.0/24', gateway: '192.168.20.1' },
+        { location: 'Link Wireless', device: 'AP-PT (per link)', vlan: 'Pusat <-> A', users: 'N/A', network: '10.10.10.0/30', gateway: 'P: 10.10.10.1, A: 10.10.10.2' },
+        { location: 'Link Wireless', device: 'AP-PT (per link)', vlan: 'Pusat <-> B', users: 'N/A', network: '10.10.10.4/30', gateway: 'P: 10.10.10.5, B: 10.10.10.6' },
     ];
     
+    const budgetData = [
+        { device: 'Router', model: 'Cisco 2911', quantity: 3, price: 1200000 },
+        { device: 'Switch', model: 'Cisco 2960', quantity: 4, price: 800000 },
+        { device: 'Access Point', model: 'AP-PT', quantity: 2, price: 700000 }
+    ];
+
     const ipTableBody = document.getElementById('ip-table-body');
     const filterButtons = document.querySelectorAll('.ip-filter-btn');
+    const budgetTableBody = document.getElementById('budget-table-body');
+    const totalBudget = document.getElementById('total-budget');
 
     function populateIpTable(filter) {
         ipTableBody.innerHTML = '';
@@ -694,6 +770,26 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    function populateBudgetTable() {
+        let total = 0;
+        budgetTableBody.innerHTML = '';
+        budgetData.forEach(item => {
+            const subtotal = item.quantity * item.price;
+            total += subtotal;
+            const tr = document.createElement('tr');
+            tr.className = 'bg-white border-b hover:bg-gray-50';
+            tr.innerHTML = `
+                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">${item.device}</td>
+                <td class="px-6 py-4">${item.model}</td>
+                <td class="px-6 py-4 text-center">${item.quantity}</td>
+                <td class="px-6 py-4 text-right">${new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(item.price)}</td>
+                <td class="px-6 py-4 text-right">${new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(subtotal)}</td>
+            `;
+            budgetTableBody.appendChild(tr);
+        });
+        totalBudget.textContent = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(total);
+    }
+
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
             const filter = button.getAttribute('data-filter');
@@ -708,6 +804,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     populateIpTable('all');
+    populateBudgetTable();
     
     document.querySelectorAll('.copy-btn').forEach(button => {
         button.addEventListener('click', () => {
